@@ -13,3 +13,5 @@ It introduces realistic 8-Ball Pool, Soccer, 2048, Snake, Minesweeper, Connect 4
 The full stack is all in Java using the Spigot API, and it functions entirely without reliance on ProtocolLib, NMS, or any other packet-related library.
 
 WARNING: If you intend to use this plugin on your server, you must purchase it on the official SpigotMC page: https://www.spigotmc.org/resources/lobbygames.109780/
+
+(Only the jar file from the Spigot page will work, the raw code will not). 
