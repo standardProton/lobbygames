@@ -1,0 +1,18 @@
+name: LobbyGames
+version: 1.4.3f
+author: c7dev
+main: me.c7dev.lobbygames.LobbyGames
+load: POSTWORLD
+api-version: 1.13
+softdepend: [PlaceholderAPI]
+
+commands:
+  lobbygames:
+    description: LobbyGames plugin main command
+    aliases: [lg]
+  lgjoin:
+    description: Directly join a Lobby Game
+    aliases: [clicker, minesweeper, snake, soccer, football, spleef, sudoku, soduko, 2048, tictactoe, tic, ttt, pool, minesw]
+  lgjoinplayer:
+    description: Console command to send a player into a game
+    aliases: [lgforcejoin]

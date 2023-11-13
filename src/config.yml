@@ -1,0 +1,221 @@
+#----------------------------------------------------------------------------------------------------------------------#
+#
+#                                                      Lobby Games
+#
+#    Thank you for downloading LobbyGames! This plugin is intended to create fun, high quality games that can be installed
+#    on any world in seconds. Try Pool, Snake, Minesweeper, Slime Soccer, and more!
+#
+#    If you need help or have a question, join the discord: https://discord.gg/yx9hUByTzq
+#
+#    Please consider writing a review for this plugin if you like it :D
+#
+#    Permissions:
+#      - lobbygames.command: Ability to use /lg tp, /lg list, and bypass blocked command list while playing
+#      - lobbygames.kickplayer: Ability to use /lg kick <player>
+#      - lobbygames.admin: Ability to create/delete arenas and clear leader boards
+#
+#----------------------------------------------------------------------------------------------------------------------#
+
+
+no-permission: "&cYou don't have permission!"
+interworld-teleportation-enabled: true #allow a player in world A to join a lobby game in world B (disable if you have multiple lobby worlds on the same server)
+using-per-world-inventory: false #set this to true only if you use a plugin that switches a player's inventory when they change worlds, such as Multiverse-Inventories
+
+leaderboard-size: 5
+leaderboard-title: "&2&l%game% Leaderboard:"
+leaderboard-format: "&b%ranking%: &a%player% &6%score%"
+leaderboard-entry-expiration: 3 #number of days a leaderboard entry will last, -1 for no expiry
+merge-leaderboard-scores: true #if false, a new entry will be made for each time a player scores on the leaderboard
+use-display-names: true #if true, shows scoreboard rank prefixes on the leaderboard
+
+cooldown-msg: "&cYou must wait %seconds% second(s) to do this!"
+cooldown-seconds: 3 #the number of seconds a player must wait until they can rejoin a game
+countdown-format: "&eThe game will start in &c%seconds% &eseconds!"
+waiting-players: "&cWaiting for more players to join..."
+quit-item-title: "&c&lQuit"
+
+error-already-in-game: "&4Error: &cYou are already in a game, use /lg quit"
+error-must-be-in-game: "&4Error: &cYou must be in a game to do this!"
+error-no-arenas-available: "&4Error: &cThere are no available arenas for this game!"
+error-arena-in-use: "&4Error: &cThis arena is already in use!"
+restart-confirmation: "&cAre you sure you want to restart?"
+yes-text: "&a&lYes"
+no-text: "&c&lNo"
+your-turn-msg: "&aYour Turn"
+opponent-turn-msg: "&7Opponent's Turn"
+not-your-turn-msg: ""
+
+#Blocked commands apply to players who are in a Lobby Game and don't have the lobbygames.command permission
+command-blocked-msg: "&cYou cannot use this command while playing this game!"
+command-block-mode: 1 #0: Command Blocking Disabled,  1: Only listed commands are blocked,  2: All commands blocked unless on the list
+command-block-list:
+ - "tpa"
+ - "tpahere"
+ - "tpaccept"
+
+2048:
+  game-alias: ""
+  action-bar: "&aScore: &f%score%"
+  start-msg: "&3&m----------------------------------------[newline]&b&l2048: &bUse the W, A, S, and D keys to merge tiles and get to the 2048 tile without filling the board![newline]&3&m----------------------------------------"
+  end-msg: "&3&m----------------------------------------[newline]&b&lRan out of moves! &bScore:&f %score% Points[newline]&3&m----------------------------------------"
+  reset-on-end: false
+  console-command-on-end: "" #Example: "broadcast %player% got a score of %score% in 2048!"
+  console-command-on-quit: ""
+
+clicker:
+  game-alias: ""
+  blocks-per-game: 40 #every game will create x blocks, each block is randomly green or red. Default: 40
+  seconds-in-air: 2.5 #adjust the speed of the block. Default: 2.5s
+  start-msg: ""
+  green-blocks: "&aClick!"
+  red-blocks: "&cDon't Click!"
+  score-format: "&a&lScore: &f&l%score%"
+  win-msg: "[newline]&2&m----------------------------------------[newline]&a&lScore: &f%score%[newline]&2&m----------------------------------------"
+  console-command-on-end: "" #Example: "broadcast %player% got a score of %score% in Clicker!"
+  console-command-on-quit: ""
+  
+connect4:
+  game-alias: ""
+  translatable-words: "Red, Yellow"
+  side-msg: "&bYou are playing as %side%!"
+  start-msg: "&3&m----------------------------------------[newline]&b&lConnect 4: &bAdd tiles to the top of the board and try to connect 4 of your color in any row, column, or diagonal![newline]&3&m----------------------------------------"
+  draw-msg: "&2&m----------------------------------------[newline]&a&lThis game is a draw![newline]&2&m----------------------------------------"
+  win-msg: "&6&m----------------------------------------[newline]&e&l%winner%&e won the Connect 4 game![newline]&6&m----------------------------------------"
+  reset-on-end: false
+  console-command-on-end: "" #Example: "broadcast %winner% won in Connect 4 against %loser%!"
+  console-command-on-quit: ""
+
+minesweeper:
+  game-alias: ""
+  player-can-fly: true #Recommended, flying lets player see more clearly
+  flag-armor-stands-enabled: true #Landmine flag decoration
+  landmine-distribution: 0.1666 #Number of landmines per cell. Recommended between 0.14 (easy) and 0.2 (hard)
+  action-bar: "&4&l%remaining_mines%&c mines remaining! &c&l%time%"
+  start-msg: "&3&m----------------------------------------[newline]&b&lMinesweeper: &bThere are %starting_mines% landmines randomly spread through the grid! Right-click to open a cell, and use the flag tool to mark a landmine. The numbers represent how many mines a cell is touching![newline]&3&m----------------------------------------"
+  end-msg: "[newline]&3&m----------------------------------------[newline]&c&lBOOM! You clicked a landmine![newline]&bScore: &f%minutes% Minutes, %seconds% Seconds (%remaining_mines% Mines Remaining)[newline]&3&m----------------------------------------"
+  win-msg: "[newline]&2&m----------------------------------------[newline]&a&lYou win![newline]&aScore: &f%minutes% minutes, %seconds% seconds[newline]&2&m----------------------------------------"
+  reset-on-end: false
+  console-command-on-end: "" #Example: "broadcast %player% got a score of %score% in Minesweeper!"
+  console-command-on-quit: ""
+
+pool:
+  game-alias: ""
+  practice-mode-enabled: true
+  proximity-joining: false #Players automatically join pool if they walk near the table
+  same-color: false #if enabled, makes all balls of a given side the same color (Change "Wool" and "Terracotta" to the colors in the translatable-words entry)
+  solids-color: 5 #1:orange, 2:magenta, 3:light-blue, 4:yellow, 5:lime, 6:pink, 7:gray, 8:light-gray, 9:cyan, 10:purple, 11:blue, 12:brown, 13: green, 14:red
+  stripes-color: 1 #if same-color is enabled
+  translatable-words: "Ball, Cue Ball, Pocketed, Wool, Terracotta" #Default (Keep the commas): "Ball, Cue Ball, Pocketed, Wool, Terracotta"
+  pocketed-8ball: "&cThe 8-ball was pocketed!"
+  side-designation: "&bYou need to pocket the &b&l%side%&b balls!"
+  cueball-title: "&f&lCue Ball &7(Place anywhere on table)"
+  cueball-description: "&7Hit this with the cue"
+  cueball-inhand: "&b%player% has the cue ball in hand!"
+  8ball-description: "&7Pocket this &conly&7 after pocketing[newline]&7all of your other designated balls!"
+  cue-item-title: "&3Cue &7(Click the white cue ball)"
+  open-gui-item-title: "&bOpen Pool Menu"
+  gui-title: "Pool Ball Status"
+  practice-mode-msg: "&aPractice while you wait for an opponent!"
+  exit-practice-mode: "&cExit Practice Mode"
+  pocketed-balls: "&3%name% pocketed %count% ball(s):[newline]&b  Wool: &f%wool_pocketed%[newline]&b  Terracotta: &f%terracotta_pocketed%"
+  start-msg: "&3&m----------------------------------------[newline]&b&lPool: &bHit the (white) cue ball to pocket other balls! Don't hit the (black) 8-ball until all of your designated balls have been pocketed.[newline]&3&m----------------------------------------"
+  win-msg: "&6&m----------------------------------------[newline]&e&l%winner%&e won the 8-Ball game![newline]&6&m----------------------------------------"
+  console-command-on-end: "" #Example: "broadcast %winner% won in Pool against %loser%!"
+  console-command-on-quit: ""
+
+snake:
+  game-alias: ""
+  start-msg: "&3&m----------------------------------------[newline]&b&lSnake: &bEat apples to grow larger, but don't run into the walls or yourself! Use the W, A, S, and D keys to move![newline]&3&m----------------------------------------"
+  end-msg: "[newline]&3&m----------------------------------------[newline]&c&l%reason%[newline]&bScore:&f %score% Apple(s)[newline]&3&m----------------------------------------"
+  hit-wall-msg: '&c&lYou hit a wall!'
+  ran-into-self-msg: '&c&lYou ran into yourself!'
+  console-command-on-end: "" #Example: "broadcast %player% got a score of %score% in Snake!"
+  console-command-on-quit: ""
+
+soccer:
+  game-alias: ""
+  proximity-joining: true #Players automatically join soccer if they walk into the arena
+  point-win-threshold: 10 #the number of goals a team needs to win
+  player-join-threshold: 2 #the minimum number of players that the game will start at
+  countdown-seconds: 20 #after the player threshold is met, how many seconds until the game starts?
+  boost-jump-enabled: true
+  boost-jump-cooldown: 6 #seconds
+  boost-jump-title: "&a&lBoost Jump"
+  ball-respawn-delay: 3 #number of seconds after a goal is scored for the ball to drop
+  ball-respawn-msg: "&eThe ball will respawn in &c%seconds% &esecond(s)!"
+  start-msg: "&3&m----------------------------------------[newline]&b&lSoccer: &bPunch the ball into your team's net to win points! Get 10 points to win![newline]&3&m----------------------------------------[newline]&aThe game has started!"
+  team1-join-msg: "&9%player% joined the blue team!"
+  team1-wool-title: "&bYou are on the &b&lBLUE&b team!"
+  team1-score-msg: "&9&lBLUE team scored a goal! &7[ %score% &7]"
+  team1-win-msg: "[newline]&3&m----------------------------------------[newline]&bBLUE team won the game![newline]&3&m----------------------------------------"
+  team2-join-msg: "&c%player% joined the red team!"
+  team2-wool-title: "&cYou are on the &c&lRED&c team!"
+  team2-score-msg: "&c&lRED team scored a goal! &7[ %score% &7]"
+  team2-win-msg: "[newline]&4&m----------------------------------------[newline]&cRED team won the game![newline]&4&m----------------------------------------"
+  score-format: "&9&l%team1_score%&7&l - &c&l%team2_score%"
+  console-command-on-end: "" #Example: "broadcast %winning_player_list% won against %losing_player_list% in Soccer!"
+  console-command-on-quit: ""
+  
+spleef:
+  game-alias: ""
+  countdown-seconds: 30
+  melt-delay: 50 #how many seconds the game should wait until blocks start melting under players' feet (enter -1 for no melting)
+  start-msg: "&3&m----------------------------------------[newline]&b&lSpleef: &bUse the shovel to break the snow blocks and don't fall below the surface! The last one standing wins![newline]&3&m----------------------------------------"
+  player-eliminated-msg: "&e%eliminated_player%&c was eliminated! &6%remaining% players remaining!"
+  win-msg: "&6&m----------------------------------------[newline]&e&l%winner%&e won the Spleef game![newline]&6&m----------------------------------------"
+  blocks-melting-msg: "&cBlocks are now melting!"
+  blocks-melting-seconds-msg: "&eBlocks melting in &c%seconds%&e seconds!"
+  console-command-on-end: "" #Example: "broadcast %player% won a game of Spleef!"
+  console-command-on-quit: ""
+  
+sudoku:
+  game-alias: ""
+  player-can-fly: true #Recommended, flying lets the player see more clearly
+  particles-enabled: true
+  prefilled-count: 45 #set difficulty
+  reset-on-end: false
+  action-bar: "&aTime: &f%time%"
+  invalid-solution: "&cInvalid Solution!" #if all spaces are filled but not a correct sudoku
+  start-msg: "&3&m----------------------------------------[newline]&b&lSudoku: &bSet the numbers in the puzzle so every row, column, and 3x3 box has one of each digit from 1 to 9![newline]&3&m----------------------------------------"
+  win-msg: "&2&m----------------------------------------[newline]&a&lYou finished the sudoku! &aTime: %time%[newline]&2&m----------------------------------------"
+  console-command-on-end: "" #Example: "broadcast %player% got a score of %score% in Sudoku!"
+  console-command-on-quit: ""
+  
+tictactoe:
+  game-alias: ""
+  join-side-title: "&bSwitch to %side%&b's"
+  now-playing-as: "&bYou will play as %side%&b's!"
+  side-msg: "[newline]&bYou are playing as %side%&b's!"
+  start-msg: "&3&m----------------------------------------[newline]&b&lTic Tac Toe: &bGet three X's or three O's in a row to win![newline]&3&m----------------------------------------"
+  draw-msg: "&2&m----------------------------------------[newline]&a&lThis game is a draw![newline]&2&m----------------------------------------"
+  win-msg: "&6&m----------------------------------------[newline]&e&l%winner%&e won the Tic Tac Toe game![newline]&6&m----------------------------------------"
+  console-command-on-end: "" #Example: "broadcast %winner% won in Tic Tac Toe against %loser%!"
+  console-command-on-quit: ""
+  
+
+join-sign-text: "JOIN"
+#----------------------------------------------------------------------------------------------------------------------#
+#
+#  [JOIN] signs:
+#  To create a clickable sign to join an arena, use the following format:
+#    |                   |
+#    |       [JOIN]      |
+#    | <GameType>:<Data> |
+#    |                   |
+#  For the <Data> section, the following can be used:
+#    Case A: Join the first available arena (Default, if <Data> is left blank)
+#    Case B: Join the nearest arena relative to the sign location
+#    [Number]: Join a specific arena id (Ex: "Tic Tac Toe:4")
+#
+#  Example: (Joins the nearest soccer arena)
+#    |                   |
+#    |       [JOIN]      |
+#    |      Soccer:B     |
+#    |                   |
+#
+#----------------------------------------------------------------------------------------------------------------------#
+
+#If you enjoy this plugin, please leave a review :D
+
+
+  
